@@ -1,0 +1,25 @@
+{
+    "name": "qlimix/uuid",
+    "type": "package",
+    "license": "LGPL-3.0-only",
+    "authors": [
+        {
+            "name": "frank",
+            "email": "frank@qlimix.net"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Qlimix\\Id\\Generator\\UUID\\": "src/"
+        }
+    },
+    "require-dev": {
+        "ramsey/uuid": "^3.7"
+    },
+    "suggest": {
+        "ramsey/uuid": "UUID 1,3,4 & 5"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
