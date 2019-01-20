@@ -4,7 +4,7 @@ namespace Qlimix\Id\UUID;
 
 use Qlimix\Id\UUID\Generator\Exception\UUIDGeneratorException;
 
-interface UUIDGenerator
+interface UUIDGeneratorInterface
 {
     /**
      * @return UUID
