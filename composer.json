@@ -10,14 +10,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "Qlimix\\Id\\Generator\\UUID\\": "src/"
+            "Qlimix\\Id\\UUID\\": "src/"
         }
-    },
-    "require-dev": {
-        "ramsey/uuid": "^3.7"
-    },
-    "suggest": {
-        "ramsey/uuid": "UUID 4"
     },
     "config": {
         "sort-packages": true
