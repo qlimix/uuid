@@ -13,7 +13,25 @@
             "Qlimix\\Id\\UUID\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": { "Qlimix\\Tests\\Id\\Uuid\\": "tests/" }
+    },
     "config": {
         "sort-packages": true
-    }
+    },
+    "require-dev": {
+        "qlimix/code-standard": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@bitbucket.org:qlimix/code-standard.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@bitbucket.org:qlimix/codesniffer-standard.git"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

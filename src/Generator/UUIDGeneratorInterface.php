@@ -8,8 +8,6 @@ use Qlimix\Id\UUID\UUID;
 interface UUIDGeneratorInterface
 {
     /**
-     * @return UUID
-     *
      * @throws UUIDGeneratorException
      */
     public function generate(): UUID;

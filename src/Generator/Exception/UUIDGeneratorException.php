@@ -2,6 +2,8 @@
 
 namespace Qlimix\Id\UUID\Generator\Exception;
 
-final class UUIDGeneratorException extends \Exception
+use Exception;
+
+final class UUIDGeneratorException extends Exception
 {
 }
