@@ -4,6 +4,6 @@ namespace Qlimix\Id\UUID\Exception;
 
 use Exception;
 
-final class InvalidUuidException extends Exception
+final class UuidException extends Exception
 {
 }

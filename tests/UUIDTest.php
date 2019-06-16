@@ -3,7 +3,7 @@
 namespace Qlimix\Tests\Id\Uuid;
 
 use PHPUnit\Framework\TestCase;
-use Qlimix\Id\UUID\Exception\InvalidUuidException;
+use Qlimix\Id\UUID\Exception\UuidException;
 use Qlimix\Id\UUID\Uuid;
 
 final class UUIDTest extends TestCase
@@ -26,10 +26,10 @@ final class UUIDTest extends TestCase
         $exception = null;
         try {
             new Uuid('c1c97fa-fc3c-49b-e03-e64075808489');
-        } catch (InvalidUuidException $exception) {
+        } catch (UuidException $exception) {
         }
 
-        $this->assertInstanceOf(InvalidUuidException::class, $exception);
+        $this->assertInstanceOf(UuidException::class, $exception);
     }
 
     /**

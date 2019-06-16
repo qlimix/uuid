@@ -2,7 +2,7 @@
 
 namespace Qlimix\Id\UUID;
 
-use Qlimix\Id\UUID\Exception\InvalidUuidException;
+use Qlimix\Id\UUID\Exception\UuidException;
 use function hex2bin;
 use function implode;
 use function preg_match;
@@ -17,7 +17,7 @@ final class Uuid
     private $uuid;
 
     /**
-     * @throws InvalidUuidException
+     * @throws UuidException
      */
     public function __construct(string $uuid)
     {
@@ -25,13 +25,13 @@ final class Uuid
     }
 
     /**
-     * @throws InvalidUuidException
+     * @throws UuidException
      */
     private function guard(string $uuid): void
     {
         $match = preg_match('~'.self::REGEX.'~', $uuid);
         if ($match === false || $match === 0) {
-            throw new InvalidUuidException('Invalid uuid');
+            throw new UuidException('Invalid uuid');
         }
 
         $this->uuid = $uuid;
@@ -42,13 +42,16 @@ final class Uuid
         return $this->uuid === $uuid->toString();
     }
 
+    /**
+     * @throws UuidException
+     */
     public function getBytes(): string
     {
         $uuid = str_replace('-', '', $this->uuid);
         $bin = hex2bin($uuid);
 
         if ($bin === false) {
-            throw new InvalidUuidException('Could not go from hex to bin');
+            throw new UuidException('Could not go from hex to bin');
         }
 
         return $bin;
