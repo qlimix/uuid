@@ -3,19 +3,19 @@
 namespace Qlimix\Tests\Id\Uuid;
 
 use PHPUnit\Framework\TestCase;
-use Qlimix\Id\UUID\Exception\UuidException;
-use Qlimix\Id\UUID\Uuid;
+use Qlimix\Id\Uuid\Exception\UuidException;
+use Qlimix\Id\Uuid\Uuid;
 
-final class UUIDTest extends TestCase
+final class UuidTest extends TestCase
 {
-    private const UUID = 'ecf72764-f657-4ae9-9183-135b72bbad32';
+    private const Uuid = 'ecf72764-f657-4ae9-9183-135b72bbad32';
 
     /**
      * @test
      */
     public function shouldCreateValidObject(): void
     {
-        $this->assertInstanceOf(Uuid::class, new Uuid(self::UUID));
+        $this->assertInstanceOf(Uuid::class, new Uuid(self::Uuid));
     }
 
     /**
@@ -37,7 +37,7 @@ final class UUIDTest extends TestCase
      */
     public function shouldCreateSameObjectFromBytes(): void
     {
-        $uuid = new Uuid(self::UUID);
+        $uuid = new Uuid(self::Uuid);
         $bytes = $uuid->getBytes();
         $uuidFromBytes = Uuid::fromBytes($bytes);
 
@@ -49,7 +49,7 @@ final class UUIDTest extends TestCase
      */
     public function shouldCreateSameObjectFromString(): void
     {
-        $uuid = new Uuid(self::UUID);
+        $uuid = new Uuid(self::Uuid);
         $bytes = $uuid->getBytes();
         $uuidFromBytes = Uuid::fromBytes($bytes);
 
@@ -62,8 +62,8 @@ final class UUIDTest extends TestCase
      */
     public function shouldEqual(): void
     {
-        $uuid = new Uuid(self::UUID);
-        $secondUuid = new Uuid(self::UUID);
+        $uuid = new Uuid(self::Uuid);
+        $secondUuid = new Uuid(self::Uuid);
 
         $this->assertTrue($uuid->equals($secondUuid));
     }

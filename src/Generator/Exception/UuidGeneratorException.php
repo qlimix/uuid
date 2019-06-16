@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Qlimix\Id\UUID\Generator\Exception;
+namespace Qlimix\Id\Uuid\Generator\Exception;
 
 use Exception;
 

@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Qlimix\Id\UUID;
+namespace Qlimix\Id\Uuid;
 
-use Qlimix\Id\UUID\Exception\UuidException;
+use Qlimix\Id\Uuid\Exception\UuidException;
 use function hex2bin;
 use function implode;
 use function preg_match;

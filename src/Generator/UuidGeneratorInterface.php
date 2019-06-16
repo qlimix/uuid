@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Qlimix\Id\UUID\Generator;
+namespace Qlimix\Id\Uuid\Generator;
 
-use Qlimix\Id\UUID\Generator\Exception\UuidGeneratorException;
-use Qlimix\Id\UUID\Uuid;
+use Qlimix\Id\Uuid\Generator\Exception\UuidGeneratorException;
+use Qlimix\Id\Uuid\Uuid;
 
 interface UuidGeneratorInterface
 {
