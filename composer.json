@@ -1,7 +1,12 @@
 {
     "name": "qlimix/uuid",
-    "type": "package",
-    "license": "LGPL-3.0-only",
+    "type": "library",
+    "description": "Generating a Uuid",
+    "license": "MIT",
+    "keywords": [
+        "qlimix",
+        "uuid"
+    ],
     "authors": [
         {
             "name": "frank",
@@ -20,18 +25,6 @@
         "sort-packages": true
     },
     "require-dev": {
-        "qlimix/code-standard": "dev-master"
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@bitbucket.org:qlimix/code-standard.git"
-        },
-        {
-            "type": "vcs",
-            "url": "git@bitbucket.org:qlimix/codesniffer-standard.git"
-        }
-    ],
-    "minimum-stability": "dev",
-    "prefer-stable": true
+        "qlimix/code-standard": "^1.0"
+    }
 }

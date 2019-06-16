@@ -3,8 +3,8 @@
 namespace Qlimix\Tests\Id\Uuid;
 
 use PHPUnit\Framework\TestCase;
-use Qlimix\Id\UUID\Exception\InvalidUUIDException;
-use Qlimix\Id\UUID\UUID;
+use Qlimix\Id\UUID\Exception\InvalidUuidException;
+use Qlimix\Id\UUID\Uuid;
 
 final class UUIDTest extends TestCase
 {
@@ -15,7 +15,7 @@ final class UUIDTest extends TestCase
      */
     public function shouldCreateValidObject(): void
     {
-        $this->assertInstanceOf(UUID::class, new UUID(self::UUID));
+        $this->assertInstanceOf(Uuid::class, new Uuid(self::UUID));
     }
 
     /**
@@ -25,11 +25,11 @@ final class UUIDTest extends TestCase
     {
         $exception = null;
         try {
-            new UUID('c1c97fa-fc3c-49b-e03-e64075808489');
-        } catch (InvalidUUIDException $exception) {
+            new Uuid('c1c97fa-fc3c-49b-e03-e64075808489');
+        } catch (InvalidUuidException $exception) {
         }
 
-        $this->assertInstanceOf(InvalidUUIDException::class, $exception);
+        $this->assertInstanceOf(InvalidUuidException::class, $exception);
     }
 
     /**
@@ -37,9 +37,9 @@ final class UUIDTest extends TestCase
      */
     public function shouldCreateSameObjectFromBytes(): void
     {
-        $uuid = new UUID(self::UUID);
+        $uuid = new Uuid(self::UUID);
         $bytes = $uuid->getBytes();
-        $uuidFromBytes = UUID::fromBytes($bytes);
+        $uuidFromBytes = Uuid::fromBytes($bytes);
 
         $this->assertSame($uuid->toString(), $uuidFromBytes->toString());
     }
@@ -49,9 +49,9 @@ final class UUIDTest extends TestCase
      */
     public function shouldCreateSameObjectFromString(): void
     {
-        $uuid = new UUID(self::UUID);
+        $uuid = new Uuid(self::UUID);
         $bytes = $uuid->getBytes();
-        $uuidFromBytes = UUID::fromBytes($bytes);
+        $uuidFromBytes = Uuid::fromBytes($bytes);
 
         $this->assertSame($uuid->toString(), $uuidFromBytes->toString());
         $this->assertTrue($uuid->equals($uuidFromBytes));
@@ -62,8 +62,8 @@ final class UUIDTest extends TestCase
      */
     public function shouldEqual(): void
     {
-        $uuid = new UUID(self::UUID);
-        $secondUuid = new UUID(self::UUID);
+        $uuid = new Uuid(self::UUID);
+        $secondUuid = new Uuid(self::UUID);
 
         $this->assertTrue($uuid->equals($secondUuid));
     }
