@@ -4,22 +4,22 @@ namespace Qlimix\Tests\Id\Uuid;
 
 use PHPUnit\Framework\TestCase;
 use Qlimix\Id\Uuid\Exception\UuidException;
-use Qlimix\Id\Uuid\Uuid;
+use Qlimix\Id\Uuid\Uuid2;
 
-final class UuidTest extends TestCase
+final class Uuid2Test extends TestCase
 {
-    private const Uuid = 'ecf72764-f657-4ae9-9183-135b72bbad32';
+    private const Uuid2 = '00000001-7be5-21ea-b700-0242bdf7a111';
 
     public function testShouldCreateValidObject(): void
     {
-        $this->assertInstanceOf(Uuid::class, new Uuid(self::Uuid));
+        $this->assertInstanceOf(Uuid2::class, new Uuid2(self::Uuid2));
     }
 
     public function testShouldCreateInvalidObject(): void
     {
         $exception = null;
         try {
-            new Uuid('c1c97fa-fc3c-49b-e03-e64075808489');
+            new Uuid2('c1c97fa-fc3c-49b-e03-e64075808489');
         } catch (UuidException $exception) {
         }
 
@@ -28,18 +28,18 @@ final class UuidTest extends TestCase
 
     public function testShouldCreateSameObjectFromBytes(): void
     {
-        $uuid = new Uuid(self::Uuid);
+        $uuid = new Uuid2(self::Uuid2);
         $bytes = $uuid->getBytes();
-        $uuidFromBytes = Uuid::fromBytes($bytes);
+        $uuidFromBytes = Uuid2::fromBytes($bytes);
 
         $this->assertSame($uuid->toString(), $uuidFromBytes->toString());
     }
 
     public function testShouldCreateSameObjectFromString(): void
     {
-        $uuid = new Uuid(self::Uuid);
+        $uuid = new Uuid2(self::Uuid2);
         $bytes = $uuid->getBytes();
-        $uuidFromBytes = Uuid::fromBytes($bytes);
+        $uuidFromBytes = Uuid2::fromBytes($bytes);
 
         $this->assertSame($uuid->toString(), $uuidFromBytes->toString());
         $this->assertTrue($uuid->equals($uuidFromBytes));
@@ -47,9 +47,23 @@ final class UuidTest extends TestCase
 
     public function testShouldEqual(): void
     {
-        $uuid = new Uuid(self::Uuid);
-        $secondUuid = new Uuid(self::Uuid);
+        $uuid = new Uuid2(self::Uuid2);
+        $secondUuid = new Uuid2(self::Uuid2);
 
         $this->assertTrue($uuid->equals($secondUuid));
+    }
+
+    public function testShouldReturnDomain(): void
+    {
+        $uuid = new Uuid2(self::Uuid2);
+
+        $this->assertTrue(Uuid2\Domain::createPerson()->equals($uuid->getDomain()));
+    }
+
+    public function testShouldReturnIdentifier(): void
+    {
+        $uuid = new Uuid2(self::Uuid2);
+
+        $this->assertSame(1, $uuid->getIdentifier());
     }
 }
