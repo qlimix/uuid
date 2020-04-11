@@ -3,8 +3,5 @@
 New:
  - added Uuid version 1-5 as separate objects
 
-Changes:
- - Internally ignore empty match groups
-
 Backward compatibility:
  - required PHP >= 7.4
