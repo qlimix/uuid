@@ -3,6 +3,7 @@
 namespace Qlimix\Id\Uuid\Generator;
 
 use Qlimix\Id\Uuid\Generator\Exception\UuidGeneratorException;
+use Qlimix\Id\Uuid\Uuid;
 use Qlimix\Id\Uuid\Uuid5;
 
 interface Uuid5GeneratorInterface
@@ -10,5 +11,5 @@ interface Uuid5GeneratorInterface
     /**
      * @throws UuidGeneratorException
      */
-    public function generate(): Uuid5;
+    public function generate(Uuid $namespace, string $name): Uuid5;
 }
