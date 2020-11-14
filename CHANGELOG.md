@@ -1,7 +1,10 @@
-## 2.0.0 - 11-03-2020
+## 2.0.0 - 14-11-2020
 
-New:
+### Features
  - added Uuid version 1-5 as separate objects
+ 
+### Changes
+ - Updated code standard
 
-Backward compatibility:
- - required PHP >= 7.4
+### Backward compatibility
+ - required PHP > 7.4
