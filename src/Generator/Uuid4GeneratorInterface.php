@@ -3,12 +3,12 @@
 namespace Qlimix\Id\Uuid\Generator;
 
 use Qlimix\Id\Uuid\Generator\Exception\UuidGeneratorException;
-use Qlimix\Id\Uuid\Uuid;
+use Qlimix\Id\Uuid\Uuid4;
 
-interface UuidGeneratorInterface
+interface Uuid4GeneratorInterface
 {
     /**
      * @throws UuidGeneratorException
      */
-    public function generate(): Uuid;
+    public function generate(): Uuid4;
 }
