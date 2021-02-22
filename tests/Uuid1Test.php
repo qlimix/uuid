@@ -12,7 +12,7 @@ final class Uuid1Test extends TestCase
 
     public function testShouldCreateValidObject(): void
     {
-        $this->assertInstanceOf(Uuid1::class, new Uuid1(self::Uuid1));
+        self::assertInstanceOf(Uuid1::class, new Uuid1(self::Uuid1));
     }
 
     public function testShouldCreateInvalidObject(): void
@@ -23,7 +23,7 @@ final class Uuid1Test extends TestCase
         } catch (UuidException $exception) {
         }
 
-        $this->assertInstanceOf(UuidException::class, $exception);
+        self::assertInstanceOf(UuidException::class, $exception);
     }
 
     public function testShouldCreateSameObjectFromBytes(): void
@@ -32,7 +32,7 @@ final class Uuid1Test extends TestCase
         $bytes = $uuid->getBytes();
         $uuidFromBytes = Uuid1::fromBytes($bytes);
 
-        $this->assertSame($uuid->toString(), $uuidFromBytes->toString());
+        self::assertSame($uuid->toString(), $uuidFromBytes->toString());
     }
 
     public function testShouldCreateSameObjectFromString(): void
@@ -41,8 +41,8 @@ final class Uuid1Test extends TestCase
         $bytes = $uuid->getBytes();
         $uuidFromBytes = Uuid1::fromBytes($bytes);
 
-        $this->assertSame($uuid->toString(), $uuidFromBytes->toString());
-        $this->assertTrue($uuid->equals($uuidFromBytes));
+        self::assertSame($uuid->toString(), $uuidFromBytes->toString());
+        self::assertTrue($uuid->equals($uuidFromBytes));
     }
 
     public function testShouldEqual(): void
@@ -50,7 +50,7 @@ final class Uuid1Test extends TestCase
         $uuid = new Uuid1(self::Uuid1);
         $secondUuid = new Uuid1(self::Uuid1);
 
-        $this->assertTrue($uuid->equals($secondUuid));
+        self::assertTrue($uuid->equals($secondUuid));
     }
 
     public function testShouldReturnDateTime(): void
@@ -59,6 +59,17 @@ final class Uuid1Test extends TestCase
 
         $datetime = $uuid1->getDatetime();
 
-        $this->assertSame('2020-04-11 08:54:29.197522', $datetime->format('Y-m-d H:i:s.u'));
+        self::assertSame('2020-04-11 08:54:29.197522', $datetime->format('Y-m-d H:i:s.u'));
+    }
+
+    public function testInvalidFromBytes(): void
+    {
+        $exception = null;
+        try {
+            Uuid1::fromBytes("\x00\x01\x02\x03");
+        } catch (UuidException $exception) {
+        }
+
+        self::assertInstanceOf(UuidException::class, $exception);
     }
 }

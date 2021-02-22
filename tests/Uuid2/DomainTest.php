@@ -14,37 +14,37 @@ final class DomainTest extends TestCase
 
         $domain = new Domain($person);
 
-        $this->assertSame($person, $domain->toInt());
-        $this->assertSame((string) $person, $domain->toString());
+        self::assertSame($person, $domain->toInt());
+        self::assertSame((string) $person, $domain->toString());
     }
 
     public function testShouldDomainPerson(): void
     {
         $domain = Domain::createPerson();
 
-        $this->assertSame(0, $domain->toInt());
-        $this->assertSame('0', $domain->toString());
+        self::assertSame(0, $domain->toInt());
+        self::assertSame('0', $domain->toString());
     }
 
     public function testShouldDomainGroup(): void
     {
         $domain = Domain::createGroup();
 
-        $this->assertSame(1, $domain->toInt());
-        $this->assertSame('1', $domain->toString());
+        self::assertSame(1, $domain->toInt());
+        self::assertSame('1', $domain->toString());
     }
 
     public function testShouldDomainOrg(): void
     {
         $domain = Domain::createOrg();
 
-        $this->assertSame(2, $domain->toInt());
-        $this->assertSame('2', $domain->toString());
+        self::assertSame(2, $domain->toInt());
+        self::assertSame('2', $domain->toString());
     }
 
     public function testShouldThrowOnInvalidDomain(): void
     {
-        $this->expectException(InvalidDomain::class);
+        self::expectException(InvalidDomain::class);
         $domain = new Domain(5);
     }
 }

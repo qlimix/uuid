@@ -66,9 +66,11 @@ final class Uuid5
      */
     public static function fromBytes(string $bytes): self
     {
-        return new self(implode(
-            '-',
-            unpack('H8time_low/H4time_mid/H4time_hi/H4clock_seq_hi/H12clock_seq_low', $bytes)
-        ));
+        $unpack = @unpack('H8time_low/H4time_mid/H4time_hi/H4clock_seq_hi/H12clock_seq_low', $bytes);
+        if ($unpack === false) {
+            throw new UuidException('Failed to convert bytes to UUID5');
+        }
+
+        return new self(implode('-', $unpack));
     }
 }

@@ -12,7 +12,7 @@ final class Uuid3Test extends TestCase
 
     public function testShouldCreateValidObject(): void
     {
-        $this->assertInstanceOf(Uuid3::class, new Uuid3(self::Uuid3));
+        self::assertInstanceOf(Uuid3::class, new Uuid3(self::Uuid3));
     }
 
     public function testShouldCreateInvalidObject(): void
@@ -23,7 +23,7 @@ final class Uuid3Test extends TestCase
         } catch (UuidException $exception) {
         }
 
-        $this->assertInstanceOf(UuidException::class, $exception);
+        self::assertInstanceOf(UuidException::class, $exception);
     }
 
     public function testShouldCreateSameObjectFromBytes(): void
@@ -32,7 +32,7 @@ final class Uuid3Test extends TestCase
         $bytes = $uuid->getBytes();
         $uuidFromBytes = Uuid3::fromBytes($bytes);
 
-        $this->assertSame($uuid->toString(), $uuidFromBytes->toString());
+        self::assertSame($uuid->toString(), $uuidFromBytes->toString());
     }
 
     public function testShouldCreateSameObjectFromString(): void
@@ -41,8 +41,8 @@ final class Uuid3Test extends TestCase
         $bytes = $uuid->getBytes();
         $uuidFromBytes = Uuid3::fromBytes($bytes);
 
-        $this->assertSame($uuid->toString(), $uuidFromBytes->toString());
-        $this->assertTrue($uuid->equals($uuidFromBytes));
+        self::assertSame($uuid->toString(), $uuidFromBytes->toString());
+        self::assertTrue($uuid->equals($uuidFromBytes));
     }
 
     public function testShouldEqual(): void
@@ -50,6 +50,17 @@ final class Uuid3Test extends TestCase
         $uuid = new Uuid3(self::Uuid3);
         $secondUuid = new Uuid3(self::Uuid3);
 
-        $this->assertTrue($uuid->equals($secondUuid));
+        self::assertTrue($uuid->equals($secondUuid));
+    }
+
+    public function testInvalidFromBytes(): void
+    {
+        $exception = null;
+        try {
+            Uuid3::fromBytes("\x00\x01\x02\x03");
+        } catch (UuidException $exception) {
+        }
+
+        self::assertInstanceOf(UuidException::class, $exception);
     }
 }

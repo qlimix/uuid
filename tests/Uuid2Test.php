@@ -12,7 +12,7 @@ final class Uuid2Test extends TestCase
 
     public function testShouldCreateValidObject(): void
     {
-        $this->assertInstanceOf(Uuid2::class, new Uuid2(self::Uuid2));
+        self::assertInstanceOf(Uuid2::class, new Uuid2(self::Uuid2));
     }
 
     public function testShouldCreateInvalidObject(): void
@@ -23,7 +23,7 @@ final class Uuid2Test extends TestCase
         } catch (UuidException $exception) {
         }
 
-        $this->assertInstanceOf(UuidException::class, $exception);
+        self::assertInstanceOf(UuidException::class, $exception);
     }
 
     public function testShouldCreateSameObjectFromBytes(): void
@@ -32,7 +32,7 @@ final class Uuid2Test extends TestCase
         $bytes = $uuid->getBytes();
         $uuidFromBytes = Uuid2::fromBytes($bytes);
 
-        $this->assertSame($uuid->toString(), $uuidFromBytes->toString());
+        self::assertSame($uuid->toString(), $uuidFromBytes->toString());
     }
 
     public function testShouldCreateSameObjectFromString(): void
@@ -41,8 +41,8 @@ final class Uuid2Test extends TestCase
         $bytes = $uuid->getBytes();
         $uuidFromBytes = Uuid2::fromBytes($bytes);
 
-        $this->assertSame($uuid->toString(), $uuidFromBytes->toString());
-        $this->assertTrue($uuid->equals($uuidFromBytes));
+        self::assertSame($uuid->toString(), $uuidFromBytes->toString());
+        self::assertTrue($uuid->equals($uuidFromBytes));
     }
 
     public function testShouldEqual(): void
@@ -50,20 +50,31 @@ final class Uuid2Test extends TestCase
         $uuid = new Uuid2(self::Uuid2);
         $secondUuid = new Uuid2(self::Uuid2);
 
-        $this->assertTrue($uuid->equals($secondUuid));
+        self::assertTrue($uuid->equals($secondUuid));
     }
 
     public function testShouldReturnDomain(): void
     {
         $uuid = new Uuid2(self::Uuid2);
 
-        $this->assertTrue(Uuid2\Domain::createPerson()->equals($uuid->getDomain()));
+        self::assertTrue(Uuid2\Domain::createPerson()->equals($uuid->getDomain()));
     }
 
     public function testShouldReturnIdentifier(): void
     {
         $uuid = new Uuid2(self::Uuid2);
 
-        $this->assertSame(1, $uuid->getIdentifier());
+        self::assertSame(1, $uuid->getIdentifier());
+    }
+
+    public function testInvalidFromBytes(): void
+    {
+        $exception = null;
+        try {
+            Uuid2::fromBytes("\x00\x01\x02\x03");
+        } catch (UuidException $exception) {
+        }
+
+        self::assertInstanceOf(UuidException::class, $exception);
     }
 }
