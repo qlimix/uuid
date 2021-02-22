@@ -5,6 +5,7 @@ namespace Qlimix\Tests\Id\Uuid;
 use PHPUnit\Framework\TestCase;
 use Qlimix\Id\Uuid\Exception\UuidException;
 use Qlimix\Id\Uuid\Uuid3;
+use ReflectionClass;
 
 final class Uuid3Test extends TestCase
 {
@@ -58,6 +59,23 @@ final class Uuid3Test extends TestCase
         $exception = null;
         try {
             Uuid3::fromBytes("\x00\x01\x02\x03");
+        } catch (UuidException $exception) {
+        }
+
+        self::assertInstanceOf(UuidException::class, $exception);
+    }
+
+    public function testShouldFailOnInvalidHex2BinData(): void
+    {
+        $uuid3 = new Uuid3(self::Uuid3);
+        $reflect = new ReflectionClass($uuid3);
+        $property = $reflect->getProperty('uuid3');
+        $property->setAccessible(true);
+        $property->setValue($uuid3, '1');
+
+        $exception = null;
+        try {
+            $uuid3->getBytes();
         } catch (UuidException $exception) {
         }
 
