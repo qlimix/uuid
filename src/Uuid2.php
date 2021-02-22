@@ -51,7 +51,7 @@ final class Uuid2
     public function getBytes(): string
     {
         $uuid = str_replace('-', '', $this->uuid2);
-        $bin = hex2bin($uuid);
+        $bin = @hex2bin($uuid);
 
         if ($bin === false) {
             throw new UuidException('Could not go from hex to bin');

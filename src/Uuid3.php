@@ -13,7 +13,7 @@ final class Uuid3
 {
     private const REGEX = '^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-3[0-9A-Fa-f]{3}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$';
 
-    private string $uuid2;
+    private string $uuid3;
 
     /**
      * @throws UuidException
@@ -33,12 +33,12 @@ final class Uuid3
             throw new UuidException('Invalid uuid');
         }
 
-        $this->uuid2 = $uuid;
+        $this->uuid3 = $uuid;
     }
 
     public function equals(self $uuid): bool
     {
-        return $this->uuid2 === $uuid->toString();
+        return $this->uuid3 === $uuid->toString();
     }
 
     /**
@@ -46,8 +46,8 @@ final class Uuid3
      */
     public function getBytes(): string
     {
-        $uuid = str_replace('-', '', $this->uuid2);
-        $bin = hex2bin($uuid);
+        $uuid = str_replace('-', '', $this->uuid3);
+        $bin = @hex2bin($uuid);
 
         if ($bin === false) {
             throw new UuidException('Could not go from hex to bin');
@@ -58,7 +58,7 @@ final class Uuid3
 
     public function toString(): string
     {
-        return $this->uuid2;
+        return $this->uuid3;
     }
 
     /**
