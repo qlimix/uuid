@@ -1,5 +1,7 @@
 # Uuid
 
+> **Archived:** this package is no longer maintained.
+
 [![Travis CI](https://api.travis-ci.org/qlimix/uuid.svg?branch=master)](https://travis-ci.org/qlimix/uuid)
 [![Coveralls](https://img.shields.io/coveralls/github/qlimix/uuid.svg)](https://coveralls.io/github/qlimix/uuid)
 [![Packagist](https://img.shields.io/packagist/v/qlimix/uuid.svg)](https://packagist.org/packages/qlimix/uuid)
